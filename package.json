@@ -1,0 +1,23 @@
+{
+  "name": "esa-api_sample",
+  "version": "1.0.0",
+  "description": "情報共有サービス『esa.io』で提供されているAPIを使用したサンプルコードです。",
+  "main": "import.js",
+  "scripts": {
+    "import single": "node import_file.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aik0aaac/esa-api_sample.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aik0aaac/esa-api_sample/issues"
+  },
+  "homepage": "https://github.com/aik0aaac/esa-api_sample#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "request": "^2.88.2"
+  }
+}
