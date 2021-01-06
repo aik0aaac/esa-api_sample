@@ -1,0 +1,203 @@
+{
+  "version": 6,
+  "entities": [
+    {
+      "entity": {
+        "type": "Project",
+        "id": "2c48ed71-c982-4677-a9e4-ef52622260f5",
+        "name": "esa.io"
+      },
+      "children": [
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "${API_DOMAIN_NAME}",
+              "path": "/v1/teams/${TEAM_NAME}/members"
+            },
+            "description": "他にも指定可能なQuery Parameters:\n\n- sort(string): データの返却順序種類を指定\n  - `posts_count`(default): チーム内での記事の作成数\n  - `joined`: チームへの参加日時\n  - `last_accessed`: 最終アクセス日時\n- order(string): データの並び順種別\n  - `desc`(default): sortで指定した順序の降順\n  - `asc`: `sort`で指定した順序の昇順",
+            "id": "f774bbf6-1b0e-4355-895f-733deac6a96e",
+            "name": "所属チーム参加メンバー情報取得",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Bearer ${ACCESS_TOKEN}"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "${API_DOMAIN_NAME}",
+              "path": "/v1/teams/${TEAM_NAME}"
+            },
+            "description": "本APIには、他にも指定可能なQuery Parametersはありません。",
+            "id": "f440e91b-882b-446c-98f0-39969d91a9ca",
+            "name": "所属チーム基本情報取得",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Bearer ${ACCESS_TOKEN}"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "${API_DOMAIN_NAME}",
+              "path": "/v1/teams/${TEAM_NAME}/stats"
+            },
+            "description": "本APIには、他にも指定可能なQuery Parametersはありません。",
+            "id": "73d61621-f8d1-43fb-9c70-d6ecbf554751",
+            "name": "所属チーム統計情報取得",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Bearer ${ACCESS_TOKEN}"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "secure": true,
+                "name": "https",
+                "version": "V11"
+              },
+              "host": "${API_DOMAIN_NAME}",
+              "path": "/v1/teams/${TEAM_NAME}/posts"
+            },
+            "description": "他にも指定可能なQuery Parameters:\n\n- q(string): 記事を絞り込むための条件を指定\n  - 文字列検索の他にも「Star数が○個より多い記事」といった形で検索もできる…詳しくは[こちら](https://docs.esa.io/posts/104)を参照\n- include(string): 返却値に含める追加情報を指定\n  - `comments`: コメント情報\n  - `comments.stargazers`: コメントに対するStar情報\n  - `stargazers`: Star情報\n  - ※`comments,comments.stargazers`の様に`,`区切りで複数個指定可能\n- sort(string): データの返却順序種類を指定\n  - `updated`(default): 記事の更新日時\n  - `created`: 記事の作成日時\n  - `number`: 記事番号\n  - `stars`: 記事へのStarの数\n  - `watches`: 記事へのWatchの数\n  - `comments`: 記事へのCommentの数\n  - `best_match`: 総合的な記事のスコア\n- order(string): データの並び順種別\n  - `desc`(default): sortで指定した順序の降順\n  - `asc`: `sort`で指定した順序の昇順\n",
+            "id": "92798d11-2a69-41fd-ba7f-da79142039bc",
+            "name": "記事一覧取得",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Bearer ${ACCESS_TOKEN}"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "environments": [
+    {
+      "id": "8c3609b1-4f6a-4117-a83a-61efcb65c6e9",
+      "name": "esa.io",
+      "variables": {
+        "be4cd36e-a485-4a9a-8882-4c9c9047d8a7": {
+          "createdAt": "2021-01-06T23:36:17.791+09:00",
+          "name": "TEAM_NAME",
+          "value": "[esa.ioチーム名を記入してください]",
+          "enabled": true,
+          "private": false
+        },
+        "5b0a668f-1699-4cb7-b04d-f18d1cf7c22a": {
+          "createdAt": "2021-01-06T23:36:28.939+09:00",
+          "name": "ACCESS_TOKEN",
+          "value": "[esa.ioで取得したAccessTokenを記入してください]",
+          "enabled": true,
+          "private": false
+        },
+        "bc4ba0a6-6ca0-450e-8cb6-3871ee7c9d63": {
+          "createdAt": "2021-01-07T00:09:35.787+09:00",
+          "name": "API_DOMAIN_NAME",
+          "value": "api.esa.io",
+          "enabled": true,
+          "private": false
+        }
+      }
+    }
+  ]
+}
