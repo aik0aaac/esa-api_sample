@@ -3,7 +3,7 @@
 /**
  * esa.ioのAPIを使用し、esa.ioへ記事を投稿するスクリプトです。
  * ※ファイル毎に行います
- * 下記のパラメータに値を指定し、記事を投稿可能です。
+ * 本ファイルと同ディレクトリに配置された`import_file_data.json`からインポート情報を読み込み、記事を投稿可能です。
  * 本コードを実行すると、そのレスポンス結果が同ディレクトリ内の「response/response.txt」に出力されます。
  *
  * ※AccessToken、チーム名は本ファイルと同ディレクトリ内に`.env`ファイルを配置し、その中に下記の記述を行い使用してください:
@@ -13,32 +13,32 @@
  * TEAM_NAME=[チーム名]
  * ```
  */
-// インポートしたい記事の内容が記載されたファイル名を指定(相対パス指定)、文字コードはutf-8にすること
-const importFileName = "importFile.md";
-// インポートしたい記事タイトル
-const importTitle = "";
-// インポートカテゴリ名
-const importCategory = "";
+// インポートしたい記事の内容が格納されたファイル
+const importFileData = "./import_file_data.yaml";
 
 // import関連
-require("dotenv").config();
-const request = require("request");
 const fs = require("fs");
+const yaml = require("js-yaml");
+const request = require("request");
+require("dotenv").config();
 
 /**
  * APIリクエストデータ設定
  */
-const body_md = fs.readFileSync(importFileName, {
-  encoding: "utf-8",
-});
+// インポートデータ読み取り
+const importDataText = fs.readFileSync(importFileData, "utf8");
+// yamlデータをJSONデータに変換
+const importData = yaml.load(importDataText);
+// インポートデータより対象ファイルを特定、対象ファイルの内容を読み取りs
+const body_md = fs.readFileSync(importData.filename, "utf8");
 
 // POSTデータ整形
 const postData = {
   post: {
-    name: importTitle,
+    name: importData.post.name,
     body_md: body_md,
-    category: importCategory,
-    wip: false,
+    category: importData.post.category,
+    wip: importData.post.wip,
   },
 };
 
@@ -82,12 +82,12 @@ ${JSON.stringify(error)}
     // レスポンス結果をファイル内に書き込み
     fs.writeFile("response/response.txt", writeFileData, (err) => {
       if (err) throw err;
-      console.log("正常に書き込みが完了しました。");
+      console.info("正常に書き込みが完了しました。");
     });
   } catch (e) {
-    console.log("レスポンス結果ファイル出力時にエラーが発生しました。");
+    console.error("レスポンス結果ファイル出力時にエラーが発生しました。");
   } finally {
-    console.log(
+    console.info(
       "出力結果は同ディレクトリ内の「response/response.txt」内に格納されています。"
     );
   }

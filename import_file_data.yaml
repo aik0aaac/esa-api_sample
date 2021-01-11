@@ -1,0 +1,10 @@
+---
+# インポート対象のファイル名
+filename: importFile.md
+post:
+  # インポート記事のタイトル
+  name: test
+  # インポート記事のカテゴリ
+  category: importCategory,
+  # WIP状態, true=WIP状態として投稿
+  wip: false,
