@@ -21,6 +21,8 @@
     "request": "^2.88.2"
   },
   "devDependencies": {
-    "js-yaml": "^4.0.0"
+    "fs-extra": "^9.0.1",
+    "js-yaml": "^4.0.0",
+    "jsdom": "^16.4.0"
   }
 }
