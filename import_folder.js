@@ -103,11 +103,11 @@ const _sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms * 1000));
 
 async function main() {
   console.info(
-    `指定したディレクトリ: ${process.argv[1]} のファイルデータを読み取ります。`
+    `指定したディレクトリ: ${process.argv[2]} のファイルデータを読み取ります。`
   );
   let filepaths;
   try {
-    filepaths = await readDirectory(process.argv[1]);
+    filepaths = await readDirectory(process.argv[2]);
   } catch (e) {
     throw e;
   }
