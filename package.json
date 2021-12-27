@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/aik0aaac/esa-api_sample#readme",
   "dependencies": {
+    "axios": "^0.24.0",
     "dotenv": "^8.2.0",
+    "form-data": "^4.0.0",
     "request": "^2.88.2"
   },
   "devDependencies": {
